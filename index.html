@@ -1,30 +1,27 @@
 <!DOCTYPE html>
-<html lang="en">
+<html>
 <head>
   <title>Animate.css</title>
   <meta charset="utf-8" />
   <meta name="viewport" content="initial-scale=1, minimal-ui" />
 
-  <link rel="dns-prefetch" href="//fonts.googleapis.com" />
-  <link rel="dns-prefetch" href="//code.jquery.com" />
-
-  <link href='//fonts.googleapis.com/css?family=Roboto:400,100,400italic,700italic,700' rel='stylesheet' type='text/css'>
-
+  <link rel="stylesheet" href="http://fonts.googleapis.com/css?family=Roboto:400,100,400italic,700italic,700" />
   <link rel="stylesheet" href="animate.min.css" />
   <link rel="stylesheet" href="style.css" />
 </head>
-<body>
-<header class="site__header island">
-  <div class="wrap">
-   <span id="animationSandbox" style="display: block;"><h1 class="site__title mega">Animate.css</h1></span>
-    <span class="beta subhead">Just-add-water CSS animations</span>
-  </div>
-</header><!-- /.site__header -->
+<body ng-app="myApp"  ng-controller="mainCtrl">
 
-<main class="site__content island" role="content">
+<header class="site__header">
+  <div class="wrap">
+   <div class="animated" ng-class="free ? chosenAnim : ''"><h1 class="site__title mega" contenteditable>Animate.css</h1></div>
+    <!-- <span class="beta subhead">Just-add-water CSS animations</span> -->
+  </div>
+</header>
+
+<main class="site__content" role="content">
   <div class="wrap">
     <form>
-      <select class="input input--dropdown js--animations">
+      <select class="input input--dropdown" ng-model="chosenAnim" ng-change="updateAnim()">
         <optgroup label="Attention Seekers">
           <option value="bounce">bounce</option>
           <option value="flash">flash</option>
@@ -34,7 +31,6 @@
           <option value="swing">swing</option>
           <option value="tada">tada</option>
           <option value="wobble">wobble</option>
-          <option value="jello">jello</option>
         </optgroup>
 
         <optgroup label="Bouncing Entrances">
@@ -106,21 +102,12 @@
           <option value="rotateOutUpRight">rotateOutUpRight</option>
         </optgroup>
 
-        <optgroup label="Sliding Entrances">
-          <option value="slideInUp">slideInUp</option>
-          <option value="slideInDown">slideInDown</option>
-          <option value="slideInLeft">slideInLeft</option>
-          <option value="slideInRight">slideInRight</option>
+        <optgroup label="Specials">
+          <option value="hinge">hinge</option>
+          <option value="rollIn">rollIn</option>
+          <option value="rollOut">rollOut</option>
+        </optgroup>
 
-        </optgroup>
-        <optgroup label="Sliding Exits">
-          <option value="slideOutUp">slideOutUp</option>
-          <option value="slideOutDown">slideOutDown</option>
-          <option value="slideOutLeft">slideOutLeft</option>
-          <option value="slideOutRight">slideOutRight</option>
-          
-        </optgroup>
-        
         <optgroup label="Zoom Entrances">
           <option value="zoomIn">zoomIn</option>
           <option value="zoomInDown">zoomInDown</option>
@@ -128,7 +115,7 @@
           <option value="zoomInRight">zoomInRight</option>
           <option value="zoomInUp">zoomInUp</option>
         </optgroup>
-        
+
         <optgroup label="Zoom Exits">
           <option value="zoomOut">zoomOut</option>
           <option value="zoomOutDown">zoomOutDown</option>
@@ -136,44 +123,56 @@
           <option value="zoomOutRight">zoomOutRight</option>
           <option value="zoomOutUp">zoomOutUp</option>
         </optgroup>
-
-        <optgroup label="Specials">
-          <option value="hinge">hinge</option>
-          <option value="rollIn">rollIn</option>
-          <option value="rollOut">rollOut</option>
-        </optgroup>
       </select>
-
-      <button class="butt js--triggerAnimation">Animate it</button>
+      <div class="toogle-btn" ng-click="infinite = infinite  ? '' : 'infinite '"  ng-class="{active: infinite}">
+        <span class="text">Infinite</span>
+        <div class="handle"></div>
+      </div>
+      <button class="butt" ng-click="updateAnim()">Animate it</button>
     </form>
-    <hr />
-    <p class="meta"><a href="https://raw.github.com/daneden/animate.css/master/animate.css" download="animate.css">Download Animate.css</a> or <a href="//github.com/daneden/animate.css">View on GitHub</a></p>
-    <p><small>Another thing from <a href="//daneden.me">Daniel Eden</a>.</small></p>
   </div>
-</main><!-- /.site__content -->
 
-<script src="//code.jquery.com/jquery-1.10.2.min.js"></script>
+  <div class="code-area-container">
+    <div class="code-area">
+&lt;<span class="token-tag">head</span>&gt;
+  &nbsp;&nbsp;&lt;<span class="token-tag">link </span><span class="token-attr">rel</span>="<span class="token-value">stylesheet</span>" <span class="token-attr">href</span>="<span class="token-value">http://cdnjs.cloudflare.com/ajax/libs/animate.css/3.2.6/animate.min.css</span>" /&gt;
+&lt;/<span class="token-tag">head</span>&gt;
+    </div>
+  </div>
+
+  <div class="code-area-container">
+    <div class="code-area">
+&lt;<span class="token-tag">h1 </span> <span class="token-attr">class</span>="<span class="token-value">animated <span class="inline-block" ng-bind="infinite"></span><span class="animated inline-block" ng-class="free ? chosenAnim : ''" ng-bind="chosenAnim"></span></span>"&gt;&lt;/<span class="token-tag">h1</span>&gt;
+    </div>
+  </div>
+
+  <hr />
+  <p class="meta"><a href="https://raw.github.com/daneden/animate.css/master/animate.css" download="animate.css">Download Animate.css</a> or <a href="http://github.com/daneden/animate.css">View on GitHub</a></p>
+
+</main>
+
+
+<script src="js/angular.min.js"></script>
 <script>
-  function testAnim(x) {
-    $('#animationSandbox').removeClass().addClass(x + ' animated').one('webkitAnimationEnd mozAnimationEnd MSAnimationEnd oanimationend animationend', function(){
-      $(this).removeClass();
-    });
+
+var app = angular.module('myApp', []);
+
+app.controller('mainCtrl', function($scope, $timeout) {
+  
+  $scope.chosenAnim = 'bounce';
+  $scope.infinite = '';
+  $scope.free = false;
+
+  $scope.updateAnim = function() {
+    $scope.free = true;    
+    $timeout(function() {
+      $scope.free = false;
+    }, 1000);
+
+    console.log($scope.text);
   };
-
-  $(document).ready(function(){
-    $('.js--triggerAnimation').click(function(e){
-      e.preventDefault();
-      var anim = $('.js--animations').val();
-      testAnim(anim);
-    });
-
-    $('.js--animations').change(function(){
-      var anim = $(this).val();
-      testAnim(anim);
-    });
-  });
+});
 
 </script>
-
 </body>
 </html>

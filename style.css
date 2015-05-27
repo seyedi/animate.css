@@ -39,8 +39,7 @@ input, select, button, textarea {
 .butt {
   border: 2px solid #f35626;
   line-height: 1.375;
-  padding-left: 1.5rem;
-  padding-right: 1.5rem;
+  padding: 0.8rem 1.5rem;
 
   font-weight: 700;
 
@@ -74,7 +73,7 @@ input, select, button, textarea {
 
 h1, .alpha {
   margin-bottom: 1.5rem;
-
+  text-align: center;
   font-size: 3rem;
   font-weight: 100;
   line-height: 1;
@@ -97,6 +96,7 @@ h2, .beta {
 }
 
 .subhead, .meta {
+  text-align: center;
   color: #7b8993;
 }
 
@@ -110,8 +110,9 @@ p, hr, form {
 
 hr {
   border: none;
-  margin-top: -1px;
   height: 1px;
+  width: 400px;
+  margin: 50px auto 20px;
   background-color: #c0c8c9;
   background-image: -webkit-linear-gradient(0deg, #fff, #c0c8c9, #fff);
 }
@@ -135,10 +136,6 @@ a {
   margin: 0 auto;
 }
 
-.island {
-  padding: 1.5rem;
-}
-
 .isle {
   padding: .75rem;
 }
@@ -156,32 +153,9 @@ html {
   color: #3d464d;
   background-color: #fff;
   -webkit-font-smoothing: antialiased;
-  width: 100%;
-
-  overflow: hidden-x;
+  overflow: hidden;
 
   /* Centering in The Unknown */
-  text-align: center;
-}
-
-@media (min-width: 650px) {
-  html {
-    height: 100%;
-  }
-
-  html:before {
-    content: '';
-    display: inline-block;
-    height: 100%;
-    vertical-align: middle;
-    margin-right: -0.25em;
-  }
-
-  body {
-    display: inline-block;
-    vertical-align: middle;
-    max-width: 38rem;
-  }
 }
 
 /*-----------------------------------*\
@@ -189,6 +163,7 @@ html {
 \*-----------------------------------*/
 
 .site__header {
+  margin-top: 3em;
   -webkit-animation: bounceInUp 1s;
 }
 
@@ -198,6 +173,7 @@ html {
     -webkit-background-clip: text;
     -webkit-text-fill-color: transparent;
     -webkit-animation: hue 60s infinite linear;
+    outline: 0;
   }
 
 .site__content {
@@ -206,6 +182,7 @@ html {
 }
 
   .site__content form {
+    text-align: center;
     -webkit-animation: bounceInUp 1s;
     -webkit-animation-delay: .1s;
   }
@@ -222,4 +199,137 @@ html {
   to {
     -webkit-filter: hue-rotate(-360deg);
   }
+}
+
+
+/**
+ * Mine
+ */
+
+.code-area-container
+{
+  margin: .5em auto;
+  background-color: #272822;
+  overflow-x: auto;
+  overflow-y: hidden;
+}
+
+.code-area:before
+{
+  display: block;
+  width: 100%;
+  content: '';
+  position: absolute;
+  left: 0;
+  right: 0;
+  top: 0;
+  height: 7px;
+
+  background: -moz-linear-gradient(top, rgba(0,0,0,0.3) 0%, rgba(0,0,0,0) 100%); /* FF3.6+ */
+  background: -webkit-linear-gradient(top, rgba(0,0,0,0.3) 0%,rgba(0,0,0,0) 100%); /* Chrome10+,Safari5.1+ */
+  background: -o-linear-gradient(top, rgba(0,0,0,0.3) 0%,rgba(0,0,0,0) 100%); /* Opera 11.10+ */
+  background: -ms-linear-gradient(top, rgba(0,0,0,0.3) 0%,rgba(0,0,0,0) 100%); /* IE10+ */
+  background: linear-gradient(to bottom, rgba(0,0,0,0.3) 0%,rgba(0,0,0,0) 100%); /* W3C */
+}
+
+.code-area:after
+{
+  display: block;
+  width: 100%;
+  content: '';
+  position: absolute;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  height: 7px;
+
+  background: -moz-linear-gradient(bottom, rgba(0,0,0,0.3) 0%, rgba(0,0,0,0) 100%); /* FF3.6+ */
+  background: -webkit-linear-gradient(bottom, rgba(0,0,0,0.3) 0%,rgba(0,0,0,0) 100%); /* Chrome10+,Safari5.1+ */
+  background: -o-linear-gradient(bottom, rgba(0,0,0,0.3) 0%,rgba(0,0,0,0) 100%); /* Opera 11.10+ */
+  background: -ms-linear-gradient(bottom, rgba(0,0,0,0.3) 0%,rgba(0,0,0,0) 100%); /* IE10+ */
+  background: linear-gradient(to top, rgba(0,0,0,0.3) 0%,rgba(0,0,0,0) 100%); /* W3C */
+}
+
+.code-area
+{
+  position: relative;
+  display: table;
+  direction: ltr;
+  padding: 0 1em;
+  margin: 0 auto;
+  background-color: #272822;
+  color: #F8F8F2;
+  text-align: left;
+  white-space: pre;
+  line-height: 1.5;
+  text-shadow: 0 1px rgba(0, 0, 0, 0.3);
+  font-family: Consolas, Monaco, 'Andale Mono', monospace;
+}
+
+.token-tag
+{
+  color: #F92672;
+}
+
+.token-attr
+{
+  color: #A6E22E;
+}
+
+.token-value
+{
+  color: #E6DB74;
+}
+
+.inline-block
+{
+  display: inline-block;
+}
+
+.toogle-btn
+{
+  position: relative;
+  display: inline-block;
+  border: 2px solid rgba(220, 220, 220, 0.58);
+  line-height: 1.375;
+  padding: 0.8rem 1.5rem;
+  border-radius: 4px;
+  font-weight: 700;
+  color: rgba(220, 220, 220, 0.58);
+  cursor: pointer;
+
+  -webkit-transition: all .4s;
+  -moz-transition: all .4s;
+  -ms-transition: all .4s;
+  transition: all .4s;
+}
+
+.toogle-btn.active
+{
+  border-color: #F35626;
+  color: #F35626;
+}
+
+.toogle-btn .handle
+{
+  position: absolute;
+  top: 0;
+  left: 5px;
+  height: 100%;
+  width: .5rem;
+  background-color: #F35626;
+  -webkit-transition: 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+  -moz-transition: 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+  -ms-transition: 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+  transition: 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+
+  -webkit-animation: hue 60s infinite linear;
+  -ms-animation: hue 60s infinite linear;
+  -moz-animation: hue 60s infinite linear;
+  animation: hue 60s infinite linear;
+}
+
+.toogle-btn.active .handle
+{
+  transform: translate3d(80px,0,0);
 }
